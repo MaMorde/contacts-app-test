@@ -1,7 +1,7 @@
 import { AxiosResponse } from "axios"
 import instance from "./axios-config"
 
-const API = "https://localhost:3000"
+const API = "http://localhost:8000"
 
 const responseBody = (response: AxiosResponse) => response.data
 
@@ -29,11 +29,11 @@ const get = {}
 const post = {
   signIn: (email: string, password: string): Promise<any> =>
     requests
-      .post(API, {
-        USERNAME: email,
-        PASSWORD: password,
+      .post(`${API}/auth/login`, {
+        email,
+        password,
       })
-      .then((res) => res.data),
+      .then((res) => res),
 }
 
 export { get, post }

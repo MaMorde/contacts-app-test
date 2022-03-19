@@ -92,7 +92,7 @@ server.post("/auth/login", (req, res) => {
   console.log(req.body)
   const { email, password } = req.body
   if (isAuthenticated({ email, password }) === false) {
-    const status = 401
+    const status = 400
     const message = "Incorrect email or password"
     res.status(status).json({ status, message })
     return
