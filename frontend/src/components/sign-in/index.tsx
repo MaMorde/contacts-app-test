@@ -1,5 +1,5 @@
-import React, { useLayoutEffect, useState } from "react"
-import { Field, Formik, useFormik } from "formik"
+import React, { useEffect, useState } from "react"
+import { useFormik } from "formik"
 import * as Yup from "yup"
 import { makeStyles } from "@material-ui/core/styles"
 import { post, setToken } from "src/api"
@@ -63,13 +63,7 @@ const SignIn: React.FC = () => {
     password: Yup.string().required("Required"),
   })
 
-  const { state, dispatch } = useAuth()
-  useLayoutEffect(() => {
-    if (state?.isSignedIn) {
-      router.push("/")
-    }
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [state?.isSignedIn])
+  const { dispatch } = useAuth()
 
   const formik = useFormik({
     initialValues: {
@@ -92,6 +86,7 @@ const SignIn: React.FC = () => {
               isSignedIn: true,
             },
           })
+          router.push("/")
         })
         .catch((err) => console.log(err))
         .finally(() => setLoading(false))

@@ -24,10 +24,13 @@ const requests = {
   delete: (url: string) => instance.delete(url).then(responseBody),
 }
 
-const get = {}
+const get = {
+  getContacts: (): Promise<Contact[]> =>
+    requests.get(`${API}/contacts`).then((res) => res),
+}
 
 const post = {
-  signIn: (email: string, password: string): Promise<any> =>
+  signIn: (email: string, password: string): Promise<SignInResponse> =>
     requests
       .post(`${API}/auth/login`, {
         email,

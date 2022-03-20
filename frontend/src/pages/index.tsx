@@ -1,10 +1,21 @@
 import type { NextPage } from "next"
-import { AuthProvider } from "src/context/AuthContext"
+import { useRouter } from "next/router"
+import { useEffect } from "react"
+import HomeContent from "src/components/home"
+import { useAuth } from "src/context/AuthContext"
 
-const Home: NextPage = () => (
-  <AuthProvider>
-    <div>Home</div>
-  </AuthProvider>
-)
+const Home: NextPage = () => {
+  const router = useRouter()
+  const { state } = useAuth()
+
+  useEffect(() => {
+    if (!state?.isSignedIn) {
+      router.push("/sign-in")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.isSignedIn])
+
+  return <HomeContent />
+}
 
 export default Home
