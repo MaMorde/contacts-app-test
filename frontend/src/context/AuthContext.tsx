@@ -1,3 +1,4 @@
+import router from "next/router"
 import * as React from "react"
 import { setToken } from "src/api"
 import { LS_ID_TOKEN } from "src/utils/variables"
@@ -52,6 +53,12 @@ const AuthProvider: React.FC = ({ children }) => {
     }
     return { isSignedIn: false }
   })
+
+  React.useLayoutEffect(() => {
+    if (!state?.isSignedIn) {
+      router.push("/sign-in")
+    }
+  }, [state?.isSignedIn])
 
   const value: ContextType = React.useMemo(
     () => ({
