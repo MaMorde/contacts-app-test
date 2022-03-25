@@ -7,6 +7,7 @@ import { LS_ID_TOKEN } from "src/utils/variables"
 import { useLayoutEffect } from "react"
 
 const useStyles = makeStyles({
+  container: {},
   content: {},
   toolbar: {
     display: "flex",
