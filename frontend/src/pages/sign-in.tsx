@@ -1,4 +1,4 @@
-import React, { useEffect } from "react"
+import React, { useLayoutEffect } from "react"
 import { NextPage } from "next/types"
 import SignIn from "src/components/sign-in"
 import { useAuth } from "src/context/AuthContext"
@@ -9,7 +9,7 @@ const SignInPage: NextPage = () => {
   const router = useRouter()
   const { state } = useAuth()
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     if (state?.isSignedIn) {
       router.push("/")
     }

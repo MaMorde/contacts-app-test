@@ -4,11 +4,9 @@ import { useRouter } from "next/router"
 import { AppBar, Button, Toolbar } from "@material-ui/core"
 import { useAuth } from "src/context/AuthContext"
 import { LS_ID_TOKEN } from "src/utils/variables"
+import { useLayoutEffect } from "react"
 
 const useStyles = makeStyles({
-  container: {
-    minHeight: "100vh",
-  },
   content: {},
   toolbar: {
     display: "flex",
@@ -24,6 +22,14 @@ const useStyles = makeStyles({
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
   const { state, dispatch } = useAuth()
+  const router = useRouter()
+
+  useLayoutEffect(() => {
+    if (!state?.isSignedIn) {
+      router.push("/sign-in")
+    }
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [state?.isSignedIn])
 
   return (
     <div className={classes.container}>
