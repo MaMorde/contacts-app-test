@@ -1,8 +1,19 @@
+import { makeStyles } from "@material-ui/core"
 import React, { useEffect, useState } from "react"
 import { get } from "src/api/requests"
 import Table from "../shared-ui/table"
 
+const useStyles = makeStyles({
+  root: {
+    display: "flex",
+    justifyContent: "center",
+    alignItems: "center",
+    padding: "100px 50px 0",
+  },
+})
+
 const HomeContent: React.FC = () => {
+  const classes = useStyles()
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -20,8 +31,8 @@ const HomeContent: React.FC = () => {
   }, [])
 
   return (
-    <div>
-      <Table />
+    <div className={classes.root}>
+      <Table data={contacts} />
     </div>
   )
 }
