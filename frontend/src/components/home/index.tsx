@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react"
 import { get } from "src/api/requests"
 import Table from "../shared-ui/table"
 
-const HomeContent = () => {
+const HomeContent: React.FC = () => {
   const [contacts, setContacts] = useState<Contact[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
@@ -18,8 +18,6 @@ const HomeContent = () => {
     }
     fetchDataAsync()
   }, [])
-
-  console.log(contacts)
 
   return (
     <div>

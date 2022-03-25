@@ -2,12 +2,18 @@ import "../styles/globals.scss"
 import type { AppProps } from "next/app"
 import { AuthProvider } from "src/context/AuthContext"
 
-function MyApp({ Component, pageProps }: AppProps) {
-  return (
-    <AuthProvider>
-      <Component {...pageProps} />
-    </AuthProvider>
-  )
-}
+const SafeHydrate: React.FC = ({ children }) => (
+  <div suppressHydrationWarning>
+    {typeof window === "undefined" ? null : children}
+  </div>
+)
 
-export default MyApp
+const App = ({ Component, pageProps }: AppProps) => (
+  <AuthProvider>
+    <SafeHydrate>
+      <Component {...pageProps} />
+    </SafeHydrate>
+  </AuthProvider>
+)
+
+export default App
