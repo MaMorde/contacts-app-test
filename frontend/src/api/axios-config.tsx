@@ -1,5 +1,5 @@
 import axios, { AxiosError, AxiosInstance } from "axios"
-import { logInLink } from "src/utils/variables"
+import { logInLink, LS_ID_TOKEN } from "src/utils/variables"
 
 const defaultOptions = {
   headers: {
@@ -17,6 +17,7 @@ instance.interceptors.response.use(
     if (error.isAxiosError) {
       const ae = error as AxiosError
       if (ae.response?.status === 401) {
+        localStorage.removeItem(LS_ID_TOKEN)
         document.location.href = logInLink
         return Promise.reject(error)
       }

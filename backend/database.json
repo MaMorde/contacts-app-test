@@ -1,32 +1,6 @@
 {
   "contacts": [
     {
-      "id": "6237267ef6dad83e884c106c",
-      "balance": "$3,938.46",
-      "age": 24,
-      "eyeColor": "green",
-      "name": "Gertrude Fisher",
-      "gender": "female",
-      "company": "SILODYNE",
-      "email": "gertrudefisher@silodyne.com",
-      "phone": "+1 (808) 598-3456",
-      "address": "158 Jewel Street, Chestnut, Arizona, 2229",
-      "note": ""
-    },
-    {
-      "id": "6237267ecdd6a9b3ebc445f9",
-      "balance": "$3,616.71",
-      "age": 37,
-      "eyeColor": "green",
-      "name": "Mcmillan Irwin",
-      "gender": "male",
-      "company": "MANTRO",
-      "email": "mcmillanirwin@mantro.com",
-      "phone": "+1 (831) 401-2065",
-      "address": "267 Bills Place, Barronett, Texas, 4676",
-      "note": ""
-    },
-    {
       "id": "6237267e7b653ccb7803871f",
       "balance": "$1,614.88",
       "age": 27,
@@ -53,19 +27,6 @@
       "note": ""
     },
     {
-      "id": "6237267e2c67ba305c2b93c3",
-      "balance": "$1,518.68",
-      "age": 27,
-      "eyeColor": "brown",
-      "name": "Lewis Battle",
-      "gender": "male",
-      "company": "DATAGEN",
-      "email": "lewisbattle@datagen.com",
-      "phone": "+1 (897) 434-3400",
-      "address": "498 Troutman Street, Marshall, Montana, 4468",
-      "note": ""
-    },
-    {
       "id": "6237267e64eeda32afe6564a",
       "balance": "$1,206.23",
       "age": 24,
@@ -76,19 +37,6 @@
       "email": "wallsolsen@cinaster.com",
       "phone": "+1 (965) 597-3775",
       "address": "115 Bay Street, Floriston, Washington, 2162",
-      "note": ""
-    },
-    {
-      "id": "6237267ea22eadfead609bfb",
-      "balance": "$2,724.96",
-      "age": 31,
-      "eyeColor": "green",
-      "name": "Avis Pollard",
-      "gender": "female",
-      "company": "LIMAGE",
-      "email": "avispollard@limage.com",
-      "phone": "+1 (812) 471-3724",
-      "address": "610 Lloyd Street, Gambrills, Oregon, 3959",
       "note": ""
     },
     {

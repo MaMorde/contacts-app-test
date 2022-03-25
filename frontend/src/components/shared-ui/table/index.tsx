@@ -1,6 +1,6 @@
-import React from "react"
+import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
-import { Table as MuiTable } from "@material-ui/core"
+import { CircularProgress, Table as MuiTable } from "@material-ui/core"
 import TableBody from "@material-ui/core/TableBody"
 import TableCell from "@material-ui/core/TableCell"
 import TableContainer from "@material-ui/core/TableContainer"
@@ -8,6 +8,9 @@ import TableRow from "@material-ui/core/TableRow"
 import Paper from "@material-ui/core/Paper"
 import TableHead from "./table-head"
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever"
+import { del } from "src/api/requests"
+import { useContacts } from "src/context/ContactsContext"
+import DeleteCell from "./delete-cell"
 
 const useStyles = makeStyles({
   root: {},
@@ -18,9 +21,6 @@ const useStyles = makeStyles({
     "&:nth-of-type(even)": {
       backgroundColor: "#e1e1e1",
     },
-  },
-  removeBtn: {
-    cursor: "pointer",
   },
 })
 
@@ -53,10 +53,7 @@ const Table: React.FC<TableProps> = ({ data }) => {
               <TableCell align="right">{contact.company}</TableCell>
               <TableCell align="right">{contact.balance}</TableCell>
               <TableCell align="right">
-                <DeleteForeverIcon
-                  className={classes.removeBtn}
-                  onClick={() => console.log("aa")}
-                />
+                <DeleteCell id={contact?.id} />
               </TableCell>
             </TableRow>
           ))}

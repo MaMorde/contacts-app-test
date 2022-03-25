@@ -39,4 +39,9 @@ const post = {
       .then((res) => res),
 }
 
-export { get, post }
+const del = {
+  deleteContact: (id: string) =>
+    requests.delete(`${API}/contacts/${id}`).then((res) => res),
+}
+
+export { get, post, del }
