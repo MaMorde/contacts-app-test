@@ -2,11 +2,12 @@ import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import { CircularProgress } from "@material-ui/core"
 import DeleteForeverIcon from "@material-ui/icons/DeleteForever"
-import { del } from "src/api/requests"
 import { useContacts } from "src/context/ContactsContext"
+import EditIcon from "@material-ui/icons/Edit"
+import AddContactModal from "../../modals/add-contact-modal"
 
 const useStyles = makeStyles({
-  removeBtn: {
+  editButton: {
     cursor: "pointer",
   },
   wrapper: {
@@ -23,34 +24,28 @@ const useStyles = makeStyles({
   },
 })
 
-type DeleteCellProps = {
-  id: string
+type EditCellProps = {
+  contact: Contact
 }
 
-const DeleteCell: React.FC<DeleteCellProps> = ({ id }) => {
+const EditCell: React.FC<EditCellProps> = ({ contact }) => {
   const classes = useStyles()
-  const { updateContacts } = useContacts()
+  const { state, updateContacts } = useContacts()
   const [loading, setLoading] = useState<boolean>()
-
-  const deleteContact = (id: string) => {
-    setLoading(true)
-
-    setTimeout(() => {
-      del.deleteContact(id).then(() => {
-        updateContacts()
-        setLoading(false)
-      })
-    }, 1000) // SetTimeout simulates loading
-  }
+  const [open, setOpen] = useState<boolean>(false)
 
   return !loading ? (
-    <DeleteForeverIcon
-      className={classes.removeBtn}
-      onClick={() => deleteContact(id)}
-    />
+    <>
+      <AddContactModal
+        data={contact}
+        open={open}
+        onClose={() => setOpen(false)}
+      />
+      <EditIcon className={classes.editButton} onClick={() => setOpen(true)} />
+    </>
   ) : (
     <CircularProgress size={24} />
   )
 }
 
-export default DeleteCell
+export default EditCell

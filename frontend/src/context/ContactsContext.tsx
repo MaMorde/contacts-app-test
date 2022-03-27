@@ -1,5 +1,6 @@
 import * as React from "react"
 import { get } from "src/api"
+import { setTimeout } from "timers"
 
 type State = {
   isLoading: boolean
@@ -43,12 +44,16 @@ const ContactsReducer = (state: State, action: Action): State => {
 const ContactsProvider: React.FC = ({ children }) => {
   const [state, dispatch] = React.useReducer(ContactsReducer, {
     contacts: [],
-    isLoading: true,
+    isLoading: false,
   })
 
   React.useEffect(() => {
     const setContacts = async () => {
-      updateContacts()
+      updateIsLoading(true)
+      setTimeout(() => {
+        updateContacts()
+        updateIsLoading(false)
+      }, 1000) // SetTimeout simulates loading
     }
     setContacts()
     // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -56,15 +61,11 @@ const ContactsProvider: React.FC = ({ children }) => {
 
   const updateContacts = async () => {
     try {
-      updateIsLoading(true)
       const contactsResponse = await get.getContacts()
-      setTimeout(() => {
-        dispatch({
-          type: "UPDATE_CONTACTS",
-          payload: contactsResponse,
-        })
-        updateIsLoading(false)
-      }, 1000) // SetTimeout simulates loading
+      dispatch({
+        type: "UPDATE_CONTACTS",
+        payload: contactsResponse,
+      })
     } catch (err) {
       // eslint-disable-next-line no-console
       console.error("setContacts err", err)

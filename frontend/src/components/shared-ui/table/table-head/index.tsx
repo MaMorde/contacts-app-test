@@ -42,6 +42,7 @@ const TableHead: React.FC = () => {
           Balance
         </TableCell>
         <TableCell className={classes.cell} align="right"></TableCell>
+        <TableCell className={classes.cell} align="right"></TableCell>
       </TableRow>
     </MuiTableHead>
   )

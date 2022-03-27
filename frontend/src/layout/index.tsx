@@ -1,29 +1,37 @@
-import React from "react"
+import React, { useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import { useRouter } from "next/router"
 import { AppBar, Button, Toolbar } from "@material-ui/core"
 import { useAuth } from "src/context/AuthContext"
 import { LS_ID_TOKEN } from "src/utils/variables"
 import { useLayoutEffect } from "react"
+import AddContactModal from "src/components/shared-ui/modals/add-contact-modal"
 
 const useStyles = makeStyles({
   container: {},
   content: {},
   toolbar: {
     display: "flex",
+    justifyContent: "space-between",
     minHeight: "64px",
-    justifyContent: "end",
   },
   button: {
     background: "white",
     color: "black",
   },
+  actionsButton: {},
 })
 
 const Layout: React.FC = ({ children }) => {
   const classes = useStyles()
   const { state, dispatch } = useAuth()
   const router = useRouter()
+
+  const [modalIsOpen, setModalIsOpen] = useState(false)
+
+  const handleClose = () => {
+    setModalIsOpen(false)
+  }
 
   useLayoutEffect(() => {
     if (!state?.isSignedIn) {
@@ -37,6 +45,17 @@ const Layout: React.FC = ({ children }) => {
       {state?.isSignedIn && (
         <AppBar position="static">
           <Toolbar className={classes.toolbar}>
+            <div className={classes.actionsButton}>
+              <Button
+                className={classes.button}
+                color="inherit"
+                variant="contained"
+                onClick={() => setModalIsOpen(!modalIsOpen)}
+              >
+                Add Contact
+              </Button>
+              <AddContactModal open={modalIsOpen} onClose={handleClose} />
+            </div>
             <Button
               className={classes.button}
               onClick={() => {

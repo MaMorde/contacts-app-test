@@ -1,58 +1,6 @@
 {
   "contacts": [
     {
-      "id": "6237267e7b653ccb7803871f",
-      "balance": "$1,614.88",
-      "age": 27,
-      "eyeColor": "brown",
-      "name": "Hampton Oconnor",
-      "gender": "male",
-      "company": "COSMETEX",
-      "email": "hamptonoconnor@cosmetex.com",
-      "phone": "+1 (946) 593-3597",
-      "address": "682 Norfolk Street, Freetown, Oklahoma, 8512",
-      "note": ""
-    },
-    {
-      "id": "6237267eb7854185a9cedb06",
-      "balance": "$2,487.82",
-      "age": 31,
-      "eyeColor": "green",
-      "name": "Whitfield Cleveland",
-      "gender": "male",
-      "company": "VINCH",
-      "email": "whitfieldcleveland@vinch.com",
-      "phone": "+1 (945) 452-3536",
-      "address": "306 Dewitt Avenue, Jamestown, Wyoming, 6676",
-      "note": ""
-    },
-    {
-      "id": "6237267e64eeda32afe6564a",
-      "balance": "$1,206.23",
-      "age": 24,
-      "eyeColor": "green",
-      "name": "Walls Olsen",
-      "gender": "male",
-      "company": "CINASTER",
-      "email": "wallsolsen@cinaster.com",
-      "phone": "+1 (965) 597-3775",
-      "address": "115 Bay Street, Floriston, Washington, 2162",
-      "note": ""
-    },
-    {
-      "id": "6237267e5291cbe73e3a0827",
-      "balance": "$2,091.77",
-      "age": 24,
-      "eyeColor": "blue",
-      "name": "Vincent Bowen",
-      "gender": "male",
-      "company": "TERRAGO",
-      "email": "vincentbowen@terrago.com",
-      "phone": "+1 (833) 528-3886",
-      "address": "455 Pineapple Street, Brethren, North Dakota, 1861",
-      "note": ""
-    },
-    {
       "id": "6237267e6ec67aa828279599",
       "balance": "$1,878.53",
       "age": 35,
