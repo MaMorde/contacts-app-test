@@ -3,7 +3,7 @@ type SignInResponse = {
 }
 
 type Contact = {
-  id: string
+  id?: string
   balance: string
   age: number
   eyeColor: string

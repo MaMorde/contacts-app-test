@@ -1,4 +1,4 @@
-import React, { useState } from "react"
+import React, { FormEvent, FormEventHandler, useState } from "react"
 import { makeStyles } from "@material-ui/core/styles"
 import {
   Button,
@@ -10,6 +10,9 @@ import {
   TextField,
 } from "@material-ui/core"
 import CloseIcon from "@material-ui/icons/Close"
+import { post } from "src/api"
+import { useContacts } from "src/context/ContactsContext"
+import { patch } from "src/api/requests"
 
 const useStyles = makeStyles({
   modal: {
@@ -66,23 +69,60 @@ type AddContactModalType = {
   data?: Contact
   open: boolean
   onClose: () => void
+  type: "create" | "edit"
 }
 
 const AddContactModal: React.FC<AddContactModalType> = ({
   data,
   open,
   onClose,
+  type,
 }) => {
   const classes = useStyles()
+  const { updateContacts } = useContacts()
 
-  const [formValues, setFormValues] = useState(data || defaultValues)
+  const [formValues, setFormValues] = useState<Contact>(data || defaultValues)
 
-  const handleInputChange = (e) => {
+  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target
     setFormValues({
       ...formValues,
       [name]: value,
     })
+  }
+
+  const handleSelectChange = (
+    e: React.ChangeEvent<{ name?: string; value: unknown }>
+  ) => {
+    const { name, value } = e.target
+    if (name)
+      setFormValues({
+        ...formValues,
+        [name]: value,
+      })
+  }
+
+  const handleCreate = (e: FormEvent) => {
+    e.preventDefault()
+    post
+      .createContact(formValues)
+      .then(() => {
+        updateContacts()
+        onClose()
+      })
+      .catch((err) => console.log(err))
+  }
+
+  const handleEdit = (e: FormEvent) => {
+    e.preventDefault()
+    if (data?.id)
+      patch
+        .editContact(data?.id, formValues)
+        .then(() => {
+          updateContacts()
+          onClose()
+        })
+        .catch((err) => console.log(err))
   }
 
   return (
@@ -97,7 +137,10 @@ const AddContactModal: React.FC<AddContactModalType> = ({
         <div className={classes.header}>
           <CloseIcon className={classes.close} onClick={onClose} />
         </div>
-        <form className={classes.form} onSubmit={() => {}}>
+        <form
+          className={classes.form}
+          onSubmit={type === "create" ? handleCreate : handleEdit}
+        >
           <TextField
             className={classes.field}
             id="name-input"
@@ -158,7 +201,7 @@ const AddContactModal: React.FC<AddContactModalType> = ({
               name="gender"
               variant="outlined"
               value={formValues.gender}
-              onChange={handleInputChange}
+              onChange={handleSelectChange}
             >
               <MenuItem key="male" value="male">
                 male

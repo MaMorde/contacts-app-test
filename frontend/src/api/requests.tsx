@@ -19,6 +19,8 @@ const requests = {
       })
       .then(responseBody),
   post: (url: string, body: any) => instance.post(url, body).then(responseBody),
+  patch: (url: string, body: Record<string, unknown>) =>
+    instance.patch(url, body).then(responseBody),
   put: (url: string, body: Record<string, unknown>) =>
     instance.put(url, body).then(responseBody),
   delete: (url: string) => instance.delete(url).then(responseBody),
@@ -37,6 +39,9 @@ const post = {
         password,
       })
       .then((res) => res),
+
+  createContact: (body: Contact): Promise<Contact> =>
+    requests.post(`${API}/contacts`, body).then((res) => res),
 }
 
 const del = {
@@ -44,4 +49,9 @@ const del = {
     requests.delete(`${API}/contacts/${id}`).then((res) => res),
 }
 
-export { get, post, del }
+const patch = {
+  editContact: (id: string, body: Contact) =>
+    requests.patch(`${API}/contacts/${id}`, body).then((res) => res),
+}
+
+export { get, post, del, patch }

@@ -54,7 +54,11 @@ const Layout: React.FC = ({ children }) => {
               >
                 Add Contact
               </Button>
-              <AddContactModal open={modalIsOpen} onClose={handleClose} />
+              <AddContactModal
+                type="create"
+                open={modalIsOpen}
+                onClose={handleClose}
+              />
             </div>
             <Button
               className={classes.button}

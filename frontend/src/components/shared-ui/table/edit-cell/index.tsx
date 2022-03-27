@@ -5,6 +5,7 @@ import DeleteForeverIcon from "@material-ui/icons/DeleteForever"
 import { useContacts } from "src/context/ContactsContext"
 import EditIcon from "@material-ui/icons/Edit"
 import AddContactModal from "../../modals/add-contact-modal"
+import { post } from "src/api"
 
 const useStyles = makeStyles({
   editButton: {
@@ -30,21 +31,18 @@ type EditCellProps = {
 
 const EditCell: React.FC<EditCellProps> = ({ contact }) => {
   const classes = useStyles()
-  const { state, updateContacts } = useContacts()
-  const [loading, setLoading] = useState<boolean>()
   const [open, setOpen] = useState<boolean>(false)
 
-  return !loading ? (
+  return (
     <>
       <AddContactModal
+        type="edit"
         data={contact}
         open={open}
         onClose={() => setOpen(false)}
       />
       <EditIcon className={classes.editButton} onClick={() => setOpen(true)} />
     </>
-  ) : (
-    <CircularProgress size={24} />
   )
 }
 
