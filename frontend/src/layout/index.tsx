@@ -27,12 +27,6 @@ const Layout: React.FC = ({ children }) => {
   const { state, dispatch } = useAuth()
   const router = useRouter()
 
-  const [modalIsOpen, setModalIsOpen] = useState(false)
-
-  const handleClose = () => {
-    setModalIsOpen(false)
-  }
-
   useLayoutEffect(() => {
     if (!state?.isSignedIn) {
       router.push("/sign-in")
@@ -45,21 +39,6 @@ const Layout: React.FC = ({ children }) => {
       {state?.isSignedIn && (
         <AppBar position="static">
           <Toolbar className={classes.toolbar}>
-            <div className={classes.actionsButton}>
-              <Button
-                className={classes.button}
-                color="inherit"
-                variant="contained"
-                onClick={() => setModalIsOpen(!modalIsOpen)}
-              >
-                Add Contact
-              </Button>
-              <AddContactModal
-                type="create"
-                open={modalIsOpen}
-                onClose={handleClose}
-              />
-            </div>
             <Button
               className={classes.button}
               onClick={() => {

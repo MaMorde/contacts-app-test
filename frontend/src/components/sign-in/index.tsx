@@ -128,7 +128,7 @@ const SignIn: React.FC = () => {
               color="primary"
               className={classes.button}
               type="submit"
-              disabled={!formik.isValid || loading}
+              disabled={!formik.dirty || !formik.isValid || loading}
             >
               <span className={classes.buttonText}>Sign In</span>
             </Button>

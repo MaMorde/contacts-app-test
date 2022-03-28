@@ -1,7 +1,6 @@
 import "../styles/globals.scss"
 import type { AppProps } from "next/app"
 import { AuthProvider } from "src/context/AuthContext"
-import { ContactsProvider } from "src/context/ContactsContext"
 
 const SafeHydrate: React.FC = ({ children }) => (
   <div suppressHydrationWarning>
@@ -12,9 +11,7 @@ const SafeHydrate: React.FC = ({ children }) => (
 const App = ({ Component, pageProps }: AppProps) => (
   <AuthProvider>
     <SafeHydrate>
-      <ContactsProvider>
-        <Component {...pageProps} />
-      </ContactsProvider>
+      <Component {...pageProps} />
     </SafeHydrate>
   </AuthProvider>
 )
